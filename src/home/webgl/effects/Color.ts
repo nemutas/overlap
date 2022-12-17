@@ -18,7 +18,7 @@ class Color {
         tDiffuse: { value: null },
         tOverlap: { value: null },
         u_background: { value: { texture: null, uvScale: new THREE.Vector2() } },
-        u_aspect: { value: gl.size.aspect },
+        u_resolution: { value: new THREE.Vector2(gl.size.width, gl.size.height) },
       },
       vertexShader,
       fragmentShader,
@@ -38,6 +38,7 @@ class Color {
   resize() {
     const { texture, uvScale } = this.pass.uniforms.u_background.value
     calcCoveredTextureScale(texture, gl.size.aspect, uvScale)
+    this.pass.uniforms.u_resolution.value.set(gl.size.width, gl.size.height)
   }
 }
 
