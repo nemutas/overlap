@@ -1,3 +1,6 @@
+// https://wgld.org/d/webgl/w055.html
+// https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/SobelOperatorShader.js
+
 float sobel(sampler2D tex, vec2 uv, vec2 resolution) {
   vec2 texel = vec2( 1.0 / resolution.x, 1.0 / resolution.y );
   // kernel definition (in glsl matrices are filled in column-major order)
