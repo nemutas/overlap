@@ -128,11 +128,8 @@ export class TCanvas {
   // animation frame
   private setAnimationFrame() {
     const anime = () => {
-      const dt = gl.time.getDelta()
-
       // gl.render()
-      effects.render(dt)
-
+      effects.render()
       requestAnimationFrame(anime)
     }
     this.animeID = requestAnimationFrame(anime)

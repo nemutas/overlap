@@ -8,8 +8,6 @@ uniform sampler2D tOverlap;
 uniform TextureData u_background;
 varying vec2 v_uv;
 
-#include '../glsl/cnoise.glsl'
-
 vec4 getTexture(TextureData data) {
   vec2 uv = (v_uv - 0.5) * data.uvScale + 0.5;
   return texture2D(data.texture, uv);

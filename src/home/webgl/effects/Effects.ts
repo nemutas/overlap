@@ -9,6 +9,7 @@ import { overlap } from './Overlap'
 class Effects {
   private composer!: EffectComposer
   private composer2!: EffectComposer
+  private isFirstFrame = true
 
   constructor() {
     this.init()
@@ -44,12 +45,15 @@ class Effects {
     this.composer2.setSize(width, height)
   }
 
-  render(dt: number) {
-    color.update(dt)
-
+  render() {
     gl.scene.traverse((child) => {
       child instanceof THREE.Mesh && (child.material = gl.scene.userData.alphaMaterial)
     })
+    if (this.isFirstFrame) {
+      // 一番最初のチラつき防止のために最初だけ余分にレンダリングする
+      this.composer2.render()
+      this.isFirstFrame = false
+    }
     this.composer2.render()
 
     gl.scene.traverse((child) => {
