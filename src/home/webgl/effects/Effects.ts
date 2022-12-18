@@ -17,10 +17,12 @@ class Effects {
 
   private init() {
     this.composer = new EffectComposer(gl.renderer)
+    this.composer.setPixelRatio(window.devicePixelRatio)
     this.composer.addPass(new RenderPass(gl.scene, gl.camera))
 
     const renderTarget = new THREE.WebGLRenderTarget(gl.size.width, gl.size.height)
     this.composer2 = new EffectComposer(gl.renderer, renderTarget)
+    this.composer2.setPixelRatio(window.devicePixelRatio)
     this.composer2.renderToScreen = false
     this.composer2.addPass(new RenderPass(gl.scene, gl.camera))
 
